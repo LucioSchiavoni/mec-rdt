@@ -48,7 +48,11 @@ export const createTelefono = async (req, res) => {
 
 export const getTelefonos = async(req,res) => {    
     try {
-        const telefonos = await prisma.telefonos.findMany();
+        const telefonos = await prisma.telefonos.findMany({
+            include:{
+                internos:true
+            }
+        });
         return res.json(telefonos)
     } catch (error) {
         console.log(error)
